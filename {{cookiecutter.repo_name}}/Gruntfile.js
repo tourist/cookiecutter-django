@@ -20,6 +20,7 @@ module.exports = function (grunt) {
       sass: this.app + '/static/sass',
       fonts: this.app + '/static/fonts',
       images: this.app + '/static/images',
+      sprites: this.app + '/static/images/sprites',
       js: this.app + '/static/js',
       manageScript: 'manage.py'
     }
@@ -29,6 +30,15 @@ module.exports = function (grunt) {
 
     paths: pathsConfig(),
     pkg: appConfig,
+
+    // see: https://github.com/Ensighten/grunt-spritesmith
+    sprite:{
+      all: {
+        src: '<%= paths.sprites %>/*.png',
+        dest: '<%= paths.images %>/spritesheet.png',
+        destCss: '<%= paths.css %>/sprites.css'
+      }
+    },
 
     // see: https://github.com/gruntjs/grunt-contrib-watch
     watch: {
